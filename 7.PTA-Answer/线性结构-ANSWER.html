@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>2018级数据结构与算法-线性结构</title>
+  <style>:root {
+  --color-primary: hsl(212, 89%, 53%);
+  --color-secondary: hsl(208, 7%, 46%);
+  --color-pass: hsl(100, 60%, 47%);
+  --color-danger: hsl(3, 68%, 53%);
+  --color-warning: hsl(35, 90%, 50%);
+  --color-ac: hsl(3, 89%, 53%);
+  --color-wa: hsl(100, 89%, 53%);
+  --color-pta: hsl(212, 87%, 30%);
+  --color-pds: hsl(23, 100%, 57%);
+  --color-pat: hsl(199, 88%, 57%);
+  --color-oms: hsl(175, 74%, 37%);
+  --color-zoj: hsl(227, 59%, 40%);
+  --color-es: hsl(45, 100%, 50%);
+  --text-black: hsl(0, 0%, 0%);
+  --text-dark: hsl(0, 0%, 10%);
+  --text-normal: hsl(0, 0%, 25%);
+  --text-light: hsl(0, 0%, 45%);
+  --text-lightest: hsl(0, 0%, 60%);
+  --text-white: hsl(0, 0%, 100%);
+  --text-black-r: hsl(0, 0%, 100%);
+  --border-all: hsl(0, 0%, 91%);
+  --bg-base: hsl(0, 0%, 100%);
+  --bg-light: hsl(0, 0%, 97%);
+  --bg-normal: hsl(0, 0%, 94%);
+  --bg-site: hsl(203, 33%, 95%);
+  --bg-base-r: hsl(0, 0%, 25%);
+  --active-brightness-diff: 0.85;
+}
+.paper {
+  margin: 0;
+  font-family: -apple-system, "PingFang SC", "Lantinghei SC", "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+.paper *,
+.paper *::before,
+.paper *::after {
+  box-sizing: border-box;
+}
+.paper pre,
+.paper code,
+.paper kbd,
+.paper samp {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+}
+.paper pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: auto;
+  -ms-overflow-style: scrollbar;
+}
+.paper label {
+  display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.paper hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 0;
+}
+.paper .result table {
+  width: 100%;
+}
+.paper .result th,
+.paper .result td {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.paper .result .box {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+/* stylelint-disable */
+.ques-view, .rendered-markdown {
+  line-height: 1.5;
+}
+.ques-view p, .rendered-markdown p {
+  margin: 0.5em 0;
+}
+.ques-view h1, .rendered-markdown h1, .ques-view h2, .rendered-markdown h2, .ques-view h3, .rendered-markdown h3, .ques-view h4, .rendered-markdown h4, .ques-view h5, .rendered-markdown h5, .ques-view h6, .rendered-markdown h6 {
+  margin: 0.8em 0;
+}
+.ques-view img, .rendered-markdown img {
+  max-width: 100%;
+}
+.ques-view .ques-list, .rendered-markdown .ques-list {
+  padding-left: 50px;
+}
+.ques-view .ques-list li, .rendered-markdown .ques-list li {
+  position: relative;
+  list-style-type: upper-alpha;
+}
+.ques-view .ques-list input, .rendered-markdown .ques-list input {
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  margin-top: -7px;
+}
+.ques-view textarea, .rendered-markdown textarea {
+  border-radius: 2px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  min-height: 100px;
+}
+.ques-view code, .rendered-markdown code {
+  font-size: 12px;
+  background: var(--bg-light);
+  border-radius: 3px;
+  border: 1px solid var(--border-all);
+  padding: 0 3px;
+  color: #e74c3c;
+  margin: 0 2px;
+}
+.ques-view pre, .rendered-markdown pre {
+  padding: 6px 12px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-all);
+  border-radius: 3px;
+  word-break: break-all;
+}
+.ques-view pre code, .rendered-markdown pre code {
+  background: none;
+  border: none;
+  color: var(--text-normal);
+  padding: 0;
+  margin: 0;
+}
+.ques-view hr, .rendered-markdown hr {
+  border: none;
+  border-top: 1px solid var(--border-all);
+}
+.ques-view blockquote, .rendered-markdown blockquote {
+  margin: 0.5em 0;
+  padding: 2px 14px;
+  font-size: 12px;
+  background: var(--bg-light);
+  border-left: 4px solid var(--border-all);
+}
+.ques-view table, .rendered-markdown table {
+  margin: 0 auto;
+}
+.ques-view table th, .rendered-markdown table th, .ques-view table td, .rendered-markdown table td {
+  border: 1px solid var(--border-all);
+  padding: 2px 4px;
+  font-size: 12px;
+}
+.ques-view .ques-score, .rendered-markdown .ques-score {
+  color: var(--text-light);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.rendered-markdown blockquote {
+  margin: 0.5em 0;
+  padding: 2px 14px;
+  font-size: 12px;
+  background: var(--bg-light);
+  border-left: 4px solid var(--border-all);
+}
+.rendered-markdown blockquote p {
+  margin-bottom: 0;
+}
+.rendered-markdown table td, .rendered-markdown table th {
+  border: 1px solid var(--border-all);
+  padding: 5px;
+}
+.rendered-markdown p:first-child {
+  margin: 0;
+}
+.katex-mathml {
+  display: none;
+}
+.code {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Monaco, Courier, "Courier New", monospace;
+}
+</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.7.1/dist/katex.min.css" integrity="sha256-tkzDFSl16wERzhCWg0ge2tON2+D6Qe9iEaJqM4ZGd4E=" crossorigin="anonymous">
+</head>
+<body>
+
+<div><div class="paper" style="max-width:940px;margin:auto" data-reactroot=""><div style="padding:16px;text-align:center;font-size:24px;font-weight:bold">2018级数据结构与算法-线性结构</div><div style="width:calc(100% / 3);display:inline-flex;padding:4px"><span style="font-weight:bold;min-width:56px">开始时间</span><span style="margin-left:8px;overflow:hidden;text-overflow:ellipsis" title="2021/04/11 19:38:00">2021/04/11 19:38:00</span></div><div style="width:calc(100% / 3);display:inline-flex;padding:4px"><span style="font-weight:bold;min-width:56px">结束时间</span><span style="margin-left:8px;overflow:hidden;text-overflow:ellipsis" title="2021/06/03 23:38:00">2021/06/03 23:38:00</span></div><div style="width:calc(100% / 3);display:inline-flex;padding:4px"><span style="font-weight:bold;min-width:56px">答题时长</span><span style="margin-left:8px;overflow:hidden;text-overflow:ellipsis" title="76560分钟">76560分钟</span></div><div style="width:calc(100% / 3);display:inline-flex;padding:4px"><span style="font-weight:bold;min-width:56px">答卷类型</span><span style="margin-left:8px;overflow:hidden;text-overflow:ellipsis" title="标准答案">标准答案</span></div><div style="width:calc(100% / 3);display:inline-flex;padding:4px"><span style="font-weight:bold;min-width:56px">总分</span><span style="margin-left:8px;overflow:hidden;text-overflow:ellipsis" title="108">108</span></div><hr/><div style="display:flex;font-size:16px;margin-top:16px"><span style="flex-grow:1;font-weight:bold">判断题</span><span>得分：暂无</span><span style="margin-left:20px">总分：36</span></div><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-1</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>关于非空线性表的后继结点</p>
+<p>非空线性表中每个结点都可以有多个后继结点。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422692982788" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422692982788" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-2</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>关于非空线性表的后继结点</p>
+<p>非空线性表中每个结点都有一个后继结点。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422692982787" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422692982787" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-3</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>顺序表 - 存储结构</p>
+<p>顺序表中逻辑上相邻的元素，其物理位置也一定相邻。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422684594176" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422684594176" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-4</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>链式存储的优点是插入、删除元素时不会引起后续元素的移动，缺点是只能顺序访问各元素。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422688788480" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422688788480" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-5</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>链表 - 存储结构</p>
+<p>链表中逻辑上相邻的元素，其物理位置也一定相邻。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422688788481" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422688788481" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-6</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>线性表采用链表存储时，结点和节点内部的存储空间可以是不连续的。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422688788482" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422688788482" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-7</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>对单链表来说，只有从头结点开始才能访问到表中所有结点。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422692982784" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422692982784" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-8</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>链栈的插入在栈顶，删除在栈底。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422692982786" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422692982786" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-9</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>栈是插入和删除只能在一端进行的线性表；队列是插入在一端进行，删除在另一端进行的线性表。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152001" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152001" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-10</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>链栈和顺序栈相比，比较明显的优点是通常不会出现栈满的情况。 </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381211422692982785" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381211422692982785" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-11</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>队列是一种插入和删除操作分别在表的两端进行的线性表，是一种先进后出的结构。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152000" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152000" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-12</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>n个元素进队的顺序和出队的顺序总是一致的。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152002" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152002" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-13</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>不论是入队列操作还是入栈操作,在顺序存储结构上都需要考虑&quot;溢出&quot;情况。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152003" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152003" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-14</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>在用数组表示的循环队列中，front值一定小于等于rear值。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152004" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152004" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-15</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>环形队列中有多少个元素可以根据队首指针和队尾指针的值来计算。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152005" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152005" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-16</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p> 循环队列执行出队操作时会引起大量元素的移动。 </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152006" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152006" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-17</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>若采用“队首指针和队尾指针的值相等”作为环形队列为空的标志，则在设置一个空队时只需将队首指针和队尾指针赋同一个值，不管什么值都可以。  </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152007" value="TRUE" disabled="" checked=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152007" value="FALSE" disabled=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">1-18</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>在对不带头结点的链队列作出队操作时，不会改变头指针的值。 </p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div style="display:flex;width:100px;justify-content:space-between"><div><input type="radio" id="TRUE" name="1381214938417152008" value="TRUE" disabled=""/><label style="margin-left:4px" for="TRUE">T</label></div><div><input type="radio" id="FALSE" name="1381214938417152008" value="FALSE" disabled="" checked=""/><label style="margin-left:4px" for="FALSE">F</label></div></div></div></div></div><hr/><div style="display:flex;font-size:16px;margin-top:16px"><span style="flex-grow:1;font-weight:bold">单选题</span><span>得分：暂无</span><span style="margin-left:20px">总分：50</span></div><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-1</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>顺序表是线性表的(    )</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381212501040148481" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>链式存储结构</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381212501040148481" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>顺序存储结构</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381212501040148481" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>索引存储结构</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381212501040148481" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>散列存储结构</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-2</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>顺序表 - 地址计算</p>
+<p>假设顺序表第 1 个元素的地址是 100，每个元素占用 2 字节内存空间，则第 5 个元素的地址是 ▁▁▁▁▁ 。</p>
+</div></div><div style="color:gray;word-break:keep-all">(1分)</div></div><div><div><input type="radio" id="A" name="1381212501035954176" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>104</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381212501035954176" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>105</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381212501035954176" value="C" disabled="" checked=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>108</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381212501035954176" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>110</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-3</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>下面的叙述正确的是（    ）</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381212501040148480" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>线性表在链式存储时，所有元素节点的存储单元是连续的</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381212501040148480" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>线性表在链式存储时，删除第i个元素的时间同i的值无关</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381212501040148480" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>线性表在顺序存储时，查找第i个元素的时间同i 的值成正比</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381212501040148480" value="D" disabled="" checked=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>线性表在顺序存储时，所有元素的存储单元是连续的</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-4</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>假定利用数组a[n]顺序存储一个栈，用top表示栈顶指针，用top==-1表示栈空，并已知栈未满，当元素x进栈时所执行的操作为（　）。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381213612559908864" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>a[--top]=x</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381213612559908864" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>a[top--]=x</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381213612559908864" value="C" disabled="" checked=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>a[++top]=x</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381213612559908864" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>a[top++]=x</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-5</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>判定一个顺序栈st（最多元素为MaxSize）为空的条件是（）。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381213612564103168" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>st-&gt;top != -1</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381213612564103168" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>st-&gt;top == -1</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381213612564103168" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>st-&gt;top != MaxSize</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381213612564103168" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>st-&gt;top ==  MaxSize</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-6</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>向一个栈顶指针为h的带头结点的链栈中插入指针s所指的结点时，应执行（    ）操作。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381213612568297472" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>h-&gt;next=s ;</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381213612568297472" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=h ;</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381213612568297472" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=h ;h =s ;</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381213612568297472" value="D" disabled="" checked=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=h-&gt;next ;h-&gt;next=s ;</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-7</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>设有一个栈，元素依次进栈的顺序为A、B、C、D、E。下列（　　　）是不可能的出栈序列。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381213612568297473" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>A,B,C,D,E</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381213612568297473" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>B,C,D,E,A</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381213612568297473" value="C" disabled="" checked=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>E,A,B,C,D</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381213612568297473" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>E,D,C,B,A</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-8</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>已知一个栈的进栈序列是1，2，3，…，n，其输出序列是p1，p2，…，pn，若p1=n，则pi的值为(    )</p>
+</div></div><div style="color:gray;word-break:keep-all">(1分)</div></div><div><div><input type="radio" id="A" name="1381213612572491776" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>i</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381213612572491776" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>n-i</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381213612572491776" value="C" disabled="" checked=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>n-i+1</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381213612572491776" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>不确定</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-9</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>在一个链表表示的队列中， f和r分别指向队列的头和尾。下列哪个操作能正确地将s结点插入到队列中：</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381214503249723392" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>f-&gt;next=s; f=s;</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723392" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>r-&gt;next=s; r=s;</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723392" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=r; r=s;</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723392" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=f; f=s;</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-10</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>在计算机内实现递归算法时所需的辅助数据结构是(      )</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381213612568297474" value="A" disabled="" checked=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>栈</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381213612568297474" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>队列</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381213612568297474" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>树</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381213612568297474" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>图</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-11</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>现采用大小为10的数组实现一个循环队列。设在某一时刻，队列为空且此时front和rear值均为5。经过若干操作后，front为8，rear为2，问：此时队列中有多少个元素？</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381214503249723393" value="A" disabled="" checked=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>4</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723393" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>5</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723393" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>6</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723393" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>7</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-12</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>用链接方式存储的队列，在进行删除运算时（　）。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381214503249723394" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>仅修改头指针</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723394" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>仅修改尾指针</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723394" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>头、尾指针都要修改</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723394" value="D" disabled="" checked=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>头、尾指针可能都要修改</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-13</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>对于循环队列，下列哪种说法是正确的（）。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381214503249723395" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>无法判断队列是否为空</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723395" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>无法判断队列是否为满</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723395" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>队列不可能满</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723395" value="D" disabled="" checked=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>以上说法都不对</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-14</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>以下（　　　）不是队列的基本运算？</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381214503249723396" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>从队尾插入一个新元素</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723396" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>从队列中删除第i个元素</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723396" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>判断一个队列是否为空</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723396" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>读取队头元素的值</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-15</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>在循环队列中，若front与rear 分别表示对头元素和队尾元素的位置，则判断循环队列空的条件是(        )。</p>
+</div></div><div style="color:gray;word-break:keep-all">(2分)</div></div><div><div><input type="radio" id="A" name="1381214503249723397" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>front==rear+1</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723397" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>rear==front+1</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723397" value="C" disabled="" checked=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>front==rear</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723397" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>front==0</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-16</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>设循环队列的存储空间为a[0..20]，且当前队头指针和队尾指针的值分别为8和3，则该队列中元素个数为(    )</p>
+</div></div><div style="color:gray;word-break:keep-all">(1分)</div></div><div><div><input type="radio" id="A" name="1381214503249723398" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>5</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723398" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>6</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723398" value="C" disabled="" checked=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>16</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723398" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>17</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-17</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>若用一个大小为6的数组来实现循环队列，且当前rear和front的值分别为0和3，当从队列中删除一个元素，再加入两个元素后，rear和front的值分别为(    )</p>
+</div></div><div style="color:gray;word-break:keep-all">(1分)</div></div><div><div><input type="radio" id="A" name="1381214503249723399" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>1和5</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214503249723399" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>2和4</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214503249723399" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>4和2</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214503249723399" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>5和1</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-18</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>为解决计算机主机与打印机之间速度不匹配问题，通常设置一个打印数据缓冲区，主机将要输出的数据依次写入该缓冲区，而打印机则依次从该缓冲区中取出数据。该缓冲区的逻辑结构应该是？</p>
+</div></div><div style="color:gray;word-break:keep-all">(5分)</div></div><div><div><input type="radio" id="A" name="1381214938417152009" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>堆栈</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214938417152009" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>队列</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214938417152009" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>树</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214938417152009" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>图</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-19</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>若已知一队列用单向链表表示，该单向链表的当前状态（含3个对象）是：<code>1-&gt;2-&gt;3</code>，其中<code>x-&gt;y</code>表示<code>x</code>的下一节点是<code>y</code>。此时，如果将对象<code>4</code>入队，然后队列头的对象出队，则单向链表的状态是：</p>
+</div></div><div style="color:gray;word-break:keep-all">(5分)</div></div><div><div><input type="radio" id="A" name="1381214938417152010" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p><code>1-&gt;2-&gt;3</code></p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214938417152010" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p><code>2-&gt;3-&gt;4</code></p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214938417152010" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p><code>4-&gt;1-&gt;2</code></p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214938417152010" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>答案不唯一</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-20</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>在一个不带头结点的非空链式队列中,假设f和r分别为队头和队尾指针,则插入s所指的结点运算是(  )。</p>
+</div></div><div style="color:gray;word-break:keep-all">(5分)</div></div><div><div><input type="radio" id="A" name="1381214938417152012" value="A" disabled=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>f-&gt;next=s; f=s;</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214938417152012" value="B" disabled="" checked=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>r-&gt;next=s; r=s;</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214938417152012" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=s; r=s;</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214938417152012" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>s-&gt;next=f; f=s;</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">2-21</div><div style="overflow:auto;flex-grow:1"><div style="display:flex"><div style="flex-grow:1"><div class="rendered-markdown"><p>循环顺序队列中是否可以插入下一个元素（）。</p>
+</div></div><div style="color:gray;word-break:keep-all">(5分)</div></div><div><div><input type="radio" id="A" name="1381214938417152013" value="A" disabled="" checked=""/><label style="margin-left:4px" for="A"><div style="display:flex"><div>A.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>与队头指针和队尾指针的值有关</p>
+</div></div></div></label></div><div><input type="radio" id="B" name="1381214938417152013" value="B" disabled=""/><label style="margin-left:4px" for="B"><div style="display:flex"><div>B.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>只与队尾指针的值有关，与队头指针的值无关</p>
+</div></div></div></label></div><div><input type="radio" id="C" name="1381214938417152013" value="C" disabled=""/><label style="margin-left:4px" for="C"><div style="display:flex"><div>C.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>只与数组大小有关，与队首指针和队尾指针的值无关</p>
+</div></div></div></label></div><div><input type="radio" id="D" name="1381214938417152013" value="D" disabled=""/><label style="margin-left:4px" for="D"><div style="display:flex"><div>D.</div><div style="margin-left:4px"><div class="rendered-markdown"><p>与曾经进行过多少次插入操作有关</p>
+</div></div></div></label></div></div></div></div></div><hr/><div style="display:flex;font-size:16px;margin-top:16px"><span style="flex-grow:1;font-weight:bold">程序填空题</span><span>得分：暂无</span><span style="margin-left:20px">总分：22</span></div><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">3-1</div><div style="overflow:auto;flex-grow:1"><div><div class="rendered-markdown"><p>已知循环队列的结构定义如下：</p>
+<pre><code class="language-c">typedef struct
+{
+    int size, front, rear;
+    int *element;
+} AQUEUE;</code></pre>
+<p>说明：<code>element</code> 为存储队列数据元素的动态数组，<code>size</code> 为动态数组的尺寸，<code>front</code> 为队首元素的下标，<code>rear</code> 为队尾元素下一位置的下标。</p>
+<p>假设有以下定义：</p>
+<pre><code class="language-c">AQUEUE *queue;</code></pre>
+<p>判断 queue 所指队列为空的条件是：<span data-reactroot=""><input type="text" style="max-width:none;width:32.4ch;max-height:500px" value="queue-&gt;front == queue-&gt;rear" disabled=""/><span style="margin-left:4px;color:gray">(3分)</span></span>；</p>
+<p>判断 queue 所指队列为满的条件是：<span data-reactroot=""><input type="text" style="max-width:none;width:56.4ch;max-height:500px" value="(queue-&gt;rear + 1) % queue-&gt;size == queue-&gt;front" disabled=""/><span style="margin-left:4px;color:gray">(3分)</span></span>；</p>
+<p>queue 所指队列的长度是：<span data-reactroot=""><input type="text" style="max-width:none;width:67.2ch;max-height:500px" value="(queue-&gt;rear - queue-&gt;front + queue-&gt;size) % queue-&gt;size" disabled=""/><span style="margin-left:4px;color:gray">(3分)</span></span>。</p>
+<hr>
+<p>注：请填写正确的C表达式，以便于检查答案是否正确。</p>
+</div></div></div></div></div><hr/><div style="padding-bottom:8px;margin-top:12px"><div style="display:flex"><div style="margin-right:12px;white-space:nowrap">3-2</div><div style="overflow:auto;flex-grow:1"><div><div class="rendered-markdown"><p>链队基本操作。</p>
+<pre><code class="language-c++">
+#include&lt;iostream&gt;
+using namespace std;
+
+#define OK 1
+#define ERROR 0
+typedef int Status;
+typedef char QElemType;
+typedef struct QNode {
+    QElemType data;
+    struct QNode *next;
+} QNode, *QueuePtr;
+
+typedef struct {
+    QueuePtr front; 
+    QueuePtr rear; 
+} LinkQueue;
+
+Status InitQueue(LinkQueue &amp;Q) {
+    Q.front = Q.rear = new QNode; 
+    Q.front-&gt;next = NULL;
+    return OK;
+}
+
+Status EnQueue(LinkQueue &amp;Q, QElemType e) {
+    QueuePtr p;
+    p = new QNode; 
+    p-&gt;data = e; 
+    p-&gt;next = NULL;
+    <span data-reactroot=""><input type="text" style="max-width:none;width:19.2ch;max-height:500px" value="Q.rear-&gt;next = p" disabled=""/><span style="margin-left:4px;color:gray">(3分)</span></span>; 
+    <span data-reactroot=""><input type="text" style="max-width:none;width:19.2ch;max-height:500px" value="Q.rear = p" disabled=""/><span style="margin-left:4px;color:gray">(3分)</span></span>; 
+    return OK;
+}
+
+Status DeQueue(LinkQueue &amp;Q, QElemType &amp;e) {
+    QueuePtr p;
+    if (Q.front == Q.rear)
+        return ERROR; 
+    p = Q.front-&gt;next; 
+    e = p-&gt;data; 
+    <span data-reactroot=""><input type="text" style="max-width:none;width:27.599999999999998ch;max-height:500px" value="Q.front-&gt;next = p-&gt;next" disabled=""/><span style="margin-left:4px;color:gray">(3分)</span></span>; 
+    if (Q.rear == p)
+        <span data-reactroot=""><input type="text" style="max-width:none;width:19.2ch;max-height:500px" value="Q.rear = Q.front" disabled=""/><span style="margin-left:4px;color:gray">(4分)</span></span>; 
+    delete p;
+    return OK;
+}
+
+int main() {
+    LinkQueue Q;
+    int n,m,i; 
+    char c;
+    InitQueue(Q);
+    cin &gt;&gt; n;
+    for(i=0;i&lt;n;i++){
+        cin &gt;&gt; c;
+        EnQueue(Q,c);        
+    }
+    for(i=0;i&lt;n;i++){
+        DeQueue(Q,c);
+    }
+    cin &gt;&gt; m;
+    for(i=0;i&lt;m;i++){
+        cin &gt;&gt; c;
+        EnQueue(Q,c);        
+    }
+    for(i=0;i&lt;m;i++){
+        DeQueue(Q,c);
+        cout &lt;&lt; c &lt;&lt; &quot; &quot;;
+    }
+    return 0;
+}</code></pre>
+<h3 id="输入格式">输入格式:</h3>
+<p>输入第一行为1个整数n，第二行输入n个字符，将n个字符依次入队，再执行n次出队操作（不输出）。
+输入第三行为1个整数m，第四行输入m个字符，将m个字符依次入队，再执行m次出队操作并输出。</p>
+<pre><code>4
+ABCD
+5
+12345</code></pre>
+<h3 id="输出格式">输出格式:</h3>
+<pre><code>1 2 3 4 5 </code></pre>
+</div></div></div></div></div><hr/></div></div>
+
+</body>
+</html>
